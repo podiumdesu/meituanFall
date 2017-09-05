@@ -83,7 +83,7 @@ submitBtn.bind("touchstart",function() {
                     time = parseInt(time) + 50;
                     setTimeout(function() {
                         window.location.href = './display.html';
-                    }, time);
+                    }, time * 1000);
                     //displayVideo();
                 }
             }
