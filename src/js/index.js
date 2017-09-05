@@ -79,9 +79,11 @@ submitBtn.bind("touchstart",function() {
                 console.log(this.responseText);
                 console.log(JSON.parse(this.responseText).status);
                 if (JSON.parse(this.responseText).status === "yes") {
+                    let time = Math.random() * 20;
+                    time = parseInt(time) + 50;
                     setTimeout(function() {
                         window.location.href = './display.html';
-                    }, 10000);
+                    }, time);
                     //displayVideo();
                 }
             }
