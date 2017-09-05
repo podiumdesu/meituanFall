@@ -1,33 +1,4 @@
 /******/ (function(modules) { // webpackBootstrap
-/******/ 	// install a JSONP callback for chunk loading
-/******/ 	var parentJsonpFunction = window["webpackJsonp"];
-/******/ 	window["webpackJsonp"] = function webpackJsonpCallback(chunkIds, moreModules, executeModules) {
-/******/ 		// add "moreModules" to the modules object,
-/******/ 		// then flag all "chunkIds" as loaded and fire callback
-/******/ 		var moduleId, chunkId, i = 0, resolves = [], result;
-/******/ 		for(;i < chunkIds.length; i++) {
-/******/ 			chunkId = chunkIds[i];
-/******/ 			if(installedChunks[chunkId]) {
-/******/ 				resolves.push(installedChunks[chunkId][0]);
-/******/ 			}
-/******/ 			installedChunks[chunkId] = 0;
-/******/ 		}
-/******/ 		for(moduleId in moreModules) {
-/******/ 			if(Object.prototype.hasOwnProperty.call(moreModules, moduleId)) {
-/******/ 				modules[moduleId] = moreModules[moduleId];
-/******/ 			}
-/******/ 		}
-/******/ 		if(parentJsonpFunction) parentJsonpFunction(chunkIds, moreModules, executeModules);
-/******/ 		while(resolves.length) {
-/******/ 			resolves.shift()();
-/******/ 		}
-/******/ 		if(executeModules) {
-/******/ 			for(i=0; i < executeModules.length; i++) {
-/******/ 				result = __webpack_require__(__webpack_require__.s = executeModules[i]);
-/******/ 			}
-/******/ 		}
-/******/ 		return result;
-/******/ 	};
 /******/ 	function hotDisposeChunk(chunkId) {
 /******/ 		delete installedChunks[chunkId];
 /******/ 	}
@@ -269,7 +240,7 @@
 /******/ 				};
 /******/ 			});
 /******/ 			hotUpdate = {};
-/******/ 			for(var chunkId in installedChunks)
+/******/ 			var chunkId = 2;
 /******/ 			{ // eslint-disable-line no-lone-blocks
 /******/ 				/*globals chunkId */
 /******/ 				hotEnsureUpdateChunk(chunkId);
@@ -685,11 +656,6 @@
 /******/ 	// The module cache
 /******/ 	var installedModules = {};
 /******/
-/******/ 	// objects to store loaded and loading chunks
-/******/ 	var installedChunks = {
-/******/ 		1: 0
-/******/ 	};
-/******/
 /******/ 	// The require function
 /******/ 	function __webpack_require__(moduleId) {
 /******/
@@ -717,55 +683,6 @@
 /******/ 		return module.exports;
 /******/ 	}
 /******/
-/******/ 	// This file contains only the entry chunk.
-/******/ 	// The chunk loading function for additional chunks
-/******/ 	__webpack_require__.e = function requireEnsure(chunkId) {
-/******/ 		var installedChunkData = installedChunks[chunkId];
-/******/ 		if(installedChunkData === 0) {
-/******/ 			return new Promise(function(resolve) { resolve(); });
-/******/ 		}
-/******/
-/******/ 		// a Promise means "currently loading".
-/******/ 		if(installedChunkData) {
-/******/ 			return installedChunkData[2];
-/******/ 		}
-/******/
-/******/ 		// setup Promise in chunk cache
-/******/ 		var promise = new Promise(function(resolve, reject) {
-/******/ 			installedChunkData = installedChunks[chunkId] = [resolve, reject];
-/******/ 		});
-/******/ 		installedChunkData[2] = promise;
-/******/
-/******/ 		// start chunk loading
-/******/ 		var head = document.getElementsByTagName('head')[0];
-/******/ 		var script = document.createElement('script');
-/******/ 		script.type = 'text/javascript';
-/******/ 		script.charset = 'utf-8';
-/******/ 		script.async = true;
-/******/ 		script.timeout = 120000;
-/******/
-/******/ 		if (__webpack_require__.nc) {
-/******/ 			script.setAttribute("nonce", __webpack_require__.nc);
-/******/ 		}
-/******/ 		script.src = __webpack_require__.p + "static/js/" + chunkId + ".chunk.js";
-/******/ 		var timeout = setTimeout(onScriptComplete, 120000);
-/******/ 		script.onerror = script.onload = onScriptComplete;
-/******/ 		function onScriptComplete() {
-/******/ 			// avoid mem leaks in IE.
-/******/ 			script.onerror = script.onload = null;
-/******/ 			clearTimeout(timeout);
-/******/ 			var chunk = installedChunks[chunkId];
-/******/ 			if(chunk !== 0) {
-/******/ 				if(chunk) {
-/******/ 					chunk[1](new Error('Loading chunk ' + chunkId + ' failed.'));
-/******/ 				}
-/******/ 				installedChunks[chunkId] = undefined;
-/******/ 			}
-/******/ 		};
-/******/ 		head.appendChild(script);
-/******/
-/******/ 		return promise;
-/******/ 	};
 /******/
 /******/ 	// expose the modules object (__webpack_modules__)
 /******/ 	__webpack_require__.m = modules;
@@ -799,11 +716,11 @@
 /******/ 	// __webpack_public_path__
 /******/ 	__webpack_require__.p = "";
 /******/
-/******/ 	// on error function for async loading
-/******/ 	__webpack_require__.oe = function(err) { console.error(err); throw err; };
-/******/
 /******/ 	// __webpack_hash__
 /******/ 	__webpack_require__.h = function() { return hotCurrentHash; };
+/******/
+/******/ 	// Load entry module and return exports
+/******/ 	return hotCreateRequire(4)(__webpack_require__.s = 4);
 /******/ })
 /************************************************************************/
 /******/ ([
@@ -813,32 +730,14 @@
 eval("// removed by extract-text-webpack-plugin//# sourceURL=[module]\n//# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJmaWxlIjoiMC5qcyIsInNvdXJjZXMiOlsid2VicGFjazovLy8uL3NyYy9jc3MvY29tbW9uLmNzcz8zNTgzIl0sInNvdXJjZXNDb250ZW50IjpbIi8vIHJlbW92ZWQgYnkgZXh0cmFjdC10ZXh0LXdlYnBhY2stcGx1Z2luXG5cblxuLy8vLy8vLy8vLy8vLy8vLy8vXG4vLyBXRUJQQUNLIEZPT1RFUlxuLy8gLi9zcmMvY3NzL2NvbW1vbi5jc3Ncbi8vIG1vZHVsZSBpZCA9IDBcbi8vIG1vZHVsZSBjaHVua3MgPSAxIDIiXSwibWFwcGluZ3MiOiJBQUFBIiwic291cmNlUm9vdCI6IiJ9\n//# sourceURL=webpack-internal:///0\n");
 
 /***/ }),
-/* 1 */
+/* 1 */,
+/* 2 */,
+/* 3 */,
+/* 4 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
-eval("\n\nObject.defineProperty(exports, \"__esModule\", {\n    value: true\n});\nvar data = exports.data = [\"我爱华科，华科爱我。1037号森林欢迎您。\", \"这里是华中科技大学计算机学院，一个实现你梦想的地方。\", \"美团点评技术俱乐部旨在建立一个培养技术人才的平台，将最新的核心技术带到校园，为同学们提供一些需要的学习资料等资源，并定期开展活动，给予俱乐部成员与企业工程师交流学习以及实践实习的机会。\", \"学院在信息存储技术与系统、并行分布式计算、现代数据库理论与技术、数字媒体、网络系统、信息安全和NP难度问题求解等方面形成了自己的特色，具有突出的综合实力。\", \"美团俱乐部向所有对技术有着深厚兴趣的同学们永远敞开大门\", \"hello,world\", \"我爱华科，华科爱我。1037号森林欢迎您。\", \"这里是华中科技大学计算机学院，一个实现你梦想的地方。\", \"hello,world\"];//# sourceURL=[module]\n//# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJmaWxlIjoiMS5qcyIsInNvdXJjZXMiOlsid2VicGFjazovLy9zcmMvanMvZGF0YS5qcz85ZGRkIl0sInNvdXJjZXNDb250ZW50IjpbImV4cG9ydCBjb25zdCBkYXRhID0gW1xuICAgIFwi5oiR54ix5Y2O56eR77yM5Y2O56eR54ix5oiR44CCMTAzN+WPt+ajruael+asoui/juaCqOOAglwiLFxuICAgIFwi6L+Z6YeM5piv5Y2O5Lit56eR5oqA5aSn5a2m6K6h566X5py65a2m6Zmi77yM5LiA5Liq5a6e546w5L2g5qKm5oOz55qE5Zyw5pa544CCXCIsXG4gICAgXCLnvo7lm6Lngrnor4TmioDmnK/kv7HkuZDpg6jml6jlnKjlu7rnq4vkuIDkuKrln7nlhbvmioDmnK/kurrmiY3nmoTlubPlj7DvvIzlsIbmnIDmlrDnmoTmoLjlv4PmioDmnK/luKbliLDmoKHlm63vvIzkuLrlkIzlrabku6zmj5DkvpvkuIDkupvpnIDopoHnmoTlrabkuaDotYTmlpnnrYnotYTmupDvvIzlubblrprmnJ/lvIDlsZXmtLvliqjvvIznu5nkuojkv7HkuZDpg6jmiJDlkZjkuI7kvIHkuJrlt6XnqIvluIjkuqTmtYHlrabkuaDku6Xlj4rlrp7ot7Xlrp7kuaDnmoTmnLrkvJrjgIJcIixcbiAgICBcIuWtpumZouWcqOS/oeaBr+WtmOWCqOaKgOacr+S4juezu+e7n+OAgeW5tuihjOWIhuW4g+W8j+iuoeeul+OAgeeOsOS7o+aVsOaNruW6k+eQhuiuuuS4juaKgOacr+OAgeaVsOWtl+WqkuS9k+OAgee9kee7nOezu+e7n+OAgeS/oeaBr+WuieWFqOWSjE5Q6Zq+5bqm6Zeu6aKY5rGC6Kej562J5pa56Z2i5b2i5oiQ5LqG6Ieq5bex55qE54m56Imy77yM5YW35pyJ56qB5Ye655qE57u85ZCI5a6e5Yqb44CCXCIsXG4gICAgXCLnvo7lm6Lkv7HkuZDpg6jlkJHmiYDmnInlr7nmioDmnK/mnInnnYDmt7HljprlhbTotqPnmoTlkIzlrabku6zmsLjov5zmlZ7lvIDlpKfpl6hcIixcbiAgICBcImhlbGxvLHdvcmxkXCIsXG4gICAgXCLmiJHniLHljY7np5HvvIzljY7np5HniLHmiJHjgIIxMDM35Y+35qOu5p6X5qyi6L+O5oKo44CCXCIsXG4gICAgXCLov5nph4zmmK/ljY7kuK3np5HmioDlpKflraborqHnrpfmnLrlrabpmaLvvIzkuIDkuKrlrp7njrDkvaDmoqbmg7PnmoTlnLDmlrnjgIJcIixcbiAgICBcImhlbGxvLHdvcmxkXCIsXG5dXG5cblxuLy8gV0VCUEFDSyBGT09URVIgLy9cbi8vIHNyYy9qcy9kYXRhLmpzIl0sIm1hcHBpbmdzIjoiOzs7OztBQUFBIiwic291cmNlUm9vdCI6IiJ9\n//# sourceURL=webpack-internal:///1\n");
-
-/***/ }),
-/* 2 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-eval("\n\nObject.defineProperty(exports, \"__esModule\", {\n    value: true\n});\n\nexports.default = function () {\n    alert(\"hello\");\n};//# sourceURL=[module]\n//# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJmaWxlIjoiMi5qcyIsInNvdXJjZXMiOlsid2VicGFjazovLy9zcmMvanMvZGlzcGxheVZpZGVvLmpzPzZhMGMiXSwic291cmNlc0NvbnRlbnQiOlsiZXhwb3J0IGRlZmF1bHQgZnVuY3Rpb24oKSB7XG4gICAgYWxlcnQoXCJoZWxsb1wiKTtcbn1cblxuXG4vLyBXRUJQQUNLIEZPT1RFUiAvL1xuLy8gc3JjL2pzL2Rpc3BsYXlWaWRlby5qcyJdLCJtYXBwaW5ncyI6Ijs7Ozs7O0FBQUE7QUFDQTtBQUNBIiwic291cmNlUm9vdCI6IiJ9\n//# sourceURL=webpack-internal:///2\n");
-
-/***/ }),
-/* 3 */
-/***/ (function(module, exports) {
-
-eval("// removed by extract-text-webpack-plugin//# sourceURL=[module]\n//# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJmaWxlIjoiMy5qcyIsInNvdXJjZXMiOlsid2VicGFjazovLy8uL3NyYy9jc3MvaW5kZXguY3NzPzg5MjUiXSwic291cmNlc0NvbnRlbnQiOlsiLy8gcmVtb3ZlZCBieSBleHRyYWN0LXRleHQtd2VicGFjay1wbHVnaW5cblxuXG4vLy8vLy8vLy8vLy8vLy8vLy9cbi8vIFdFQlBBQ0sgRk9PVEVSXG4vLyAuL3NyYy9jc3MvaW5kZXguY3NzXG4vLyBtb2R1bGUgaWQgPSAzXG4vLyBtb2R1bGUgY2h1bmtzID0gMSJdLCJtYXBwaW5ncyI6IkFBQUEiLCJzb3VyY2VSb290IjoiIn0=\n//# sourceURL=webpack-internal:///3\n");
-
-/***/ }),
-/* 4 */,
-/* 5 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-eval("\n\nvar _data = __webpack_require__(1);\n\nvar _displayVideo = __webpack_require__(2);\n\nvar _displayVideo2 = _interopRequireDefault(_displayVideo);\n\nfunction _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }\n\n__webpack_require__(3);\n__webpack_require__(0);\n\nconsole.log(_data.data[1]);\n\n//console.log(\"hello\")\n\nvar recordBtn = $(\"#record-btn\");\nvar submitBtn = $(\"#submit-btn\");\nvar text = $(\"#time-record\");\nvar waiting = $(\"#waiting-area\");\nvar container = $(\"#container\");\nvar textRead = $(\"#text-read\");\n\nvar s = Math.random() * 10;\ntextRead.html(_data.data[parseInt(s)]);\nvar t = void 0;\nvar c = 0;\nvar sendData = { id: 1 }; //上传数字给服务器，判断是否需要加载视频\nfunction timedCount() {\n    //console.log(\"Now it is starting\");\n    c = c + 1;\n    if (c < 10) {\n        text.html(\"00:0\" + c);\n    } else if (c >= 60 && c < 70) {\n        text.html(\"01:0\" + c - 60);\n    } else {\n        text.html(\"00:\" + c);\n    }\n    t = setTimeout(timedCount, 1000);\n}\n\nrecordBtn.bind(\"touchstart\", function () {\n    //console.log(\"i am clicked\");\n    if (recordBtn.hasClass(\"toRecord\") > 0) {\n        //console.log(\"This is stoped\");\n        recordBtn.removeClass(\"toRecord\");\n        recordBtn.html(\"重新录制\");\n        clearTimeout(t);\n    } else {\n        c = 0;\n        recordBtn.addClass(\"toRecord\");\n        recordBtn.html(\"点击停止\");\n        timedCount();\n    }\n});\n\nsubmitBtn.bind(\"touchstart\", function () {\n    if (c === 0) {\n        text.html(\"请录音\");\n        setTimeout(function () {\n            text.html(\"00:00\");\n        }, 2000);\n    } else {\n        //用户跳过停止，直接点击提交处理\n        recordBtn.removeClass(\"toRecord\");\n        recordBtn.html(\"重新录制\");\n        clearTimeout(t);\n        submitBtn.addClass('bounce');\n        setTimeout(function () {\n            submitBtn.removeClass('bounce');\n            waiting.removeClass(\"toHide\");\n            $(\"#text-area\").addClass(\"toFilter\");\n            recordBtn.attr(\"disabled\", \"disabled\");\n            submitBtn.attr(\"disabled\", \"disabled\");\n            //解绑事件\n            recordBtn.unbind(\"touchstart\");\n            submitBtn.unbind(\"touchstart\");\n        }, 1000);\n        window.location.href = './display.html';\n        //Ajax与服务器通信\n        console.log(sendData);\n        var ajax = new XMLHttpRequest();\n        ajax.open(\"POST\", \"/check.php\", true);\n        ajax.setRequestHeader(\"Content-type\", \"application/x-www-form-urlencoded\");\n        ajax.onreadystatechange = function () {\n            console.log(this.readyState);\n            if (this.readyState === 4) {\n                console.log(this.responseText);\n                console.log(JSON.parse(this.responseText).status);\n                if (JSON.parse(this.responseText).status === \"yes\") {\n                    setTimeout(_displayVideo2.default, 50000);\n                    //displayVideo();\n                }\n            }\n        };\n        ajax.send(JSON.stringify(sendData));\n    }\n});//# sourceURL=[module]\n//# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJmaWxlIjoiNS5qcyIsInNvdXJjZXMiOlsid2VicGFjazovLy9zcmMvanMvaW5kZXguanM/OTlhOCJdLCJzb3VyY2VzQ29udGVudCI6WyJyZXF1aXJlKCcuLi9jc3MvaW5kZXguY3NzJyk7XG5yZXF1aXJlKCcuLi9jc3MvY29tbW9uLmNzcycpO1xuaW1wb3J0IHtkYXRhfSBmcm9tICcuL2RhdGEnO1xuY29uc29sZS5sb2coZGF0YVsxXSk7XG5cbi8vY29uc29sZS5sb2coXCJoZWxsb1wiKVxuaW1wb3J0IGRpc3BsYXlWaWRlbyBmcm9tICcuL2Rpc3BsYXlWaWRlbyc7XG5jb25zdCByZWNvcmRCdG4gPSAkKFwiI3JlY29yZC1idG5cIik7XG5jb25zdCBzdWJtaXRCdG4gPSAkKFwiI3N1Ym1pdC1idG5cIik7XG5jb25zdCB0ZXh0ID0gJChcIiN0aW1lLXJlY29yZFwiKTtcbmNvbnN0IHdhaXRpbmcgPSAkKFwiI3dhaXRpbmctYXJlYVwiKTtcbmNvbnN0IGNvbnRhaW5lciA9ICQoXCIjY29udGFpbmVyXCIpO1xuY29uc3QgdGV4dFJlYWQgPSAkKFwiI3RleHQtcmVhZFwiKTtcblxubGV0IHMgPSBNYXRoLnJhbmRvbSgpICogMTA7XG50ZXh0UmVhZC5odG1sKGRhdGFbcGFyc2VJbnQocyldKTtcbmxldCB0O1xubGV0IGMgPSAwO1xuY29uc3Qgc2VuZERhdGEgPSB7aWQ6IDF9OyAgLy/kuIrkvKDmlbDlrZfnu5nmnI3liqHlmajvvIzliKTmlq3mmK/lkKbpnIDopoHliqDovb3op4bpopFcbmZ1bmN0aW9uIHRpbWVkQ291bnQoKSB7XG4gICAgLy9jb25zb2xlLmxvZyhcIk5vdyBpdCBpcyBzdGFydGluZ1wiKTtcbiAgICBjID0gYyArIDE7XG4gICAgaWYgKGMgPCAxMCkge1xuICAgICAgICB0ZXh0Lmh0bWwoXCIwMDowXCIrYyk7XG4gICAgfSBlbHNlIGlmIChjID49IDYwICYmIGMgPCA3MCkge1xuICAgICAgICB0ZXh0Lmh0bWwoXCIwMTowXCIrYy02MCk7XG4gICAgfSBlbHNlIHtcbiAgICAgICAgdGV4dC5odG1sKFwiMDA6XCIrYyk7XG4gICAgfVxuICAgIHQgPSBzZXRUaW1lb3V0KHRpbWVkQ291bnQsIDEwMDApO1xufVxuXG5yZWNvcmRCdG4uYmluZChcInRvdWNoc3RhcnRcIixmdW5jdGlvbigpIHtcbiAgICAvL2NvbnNvbGUubG9nKFwiaSBhbSBjbGlja2VkXCIpO1xuICAgIGlmIChyZWNvcmRCdG4uaGFzQ2xhc3MoXCJ0b1JlY29yZFwiKSA+IDApe1xuICAgICAgICAvL2NvbnNvbGUubG9nKFwiVGhpcyBpcyBzdG9wZWRcIik7XG4gICAgICAgIHJlY29yZEJ0bi5yZW1vdmVDbGFzcyhcInRvUmVjb3JkXCIpO1xuICAgICAgICByZWNvcmRCdG4uaHRtbChcIumHjeaWsOW9leWItlwiKTtcbiAgICAgICAgY2xlYXJUaW1lb3V0KHQpO1xuICAgIH0gZWxzZSB7XG4gICAgICAgIGMgPSAwO1xuICAgICAgICByZWNvcmRCdG4uYWRkQ2xhc3MoXCJ0b1JlY29yZFwiKTtcbiAgICAgICAgcmVjb3JkQnRuLmh0bWwoXCLngrnlh7vlgZzmraJcIik7XG4gICAgICAgIHRpbWVkQ291bnQoKTtcbiAgICB9XG59KTtcblxuc3VibWl0QnRuLmJpbmQoXCJ0b3VjaHN0YXJ0XCIsZnVuY3Rpb24oKSB7XG4gICAgaWYgKGMgPT09IDApIHtcbiAgICAgICAgdGV4dC5odG1sKFwi6K+35b2V6Z+zXCIpO1xuICAgICAgICBzZXRUaW1lb3V0KGZ1bmN0aW9uKCkge1xuICAgICAgICAgICAgdGV4dC5odG1sKFwiMDA6MDBcIik7XG4gICAgICAgIH0sMjAwMCk7XG4gICAgfSBlbHNlIHtcbiAgICAgICAgLy/nlKjmiLfot7Pov4flgZzmraLvvIznm7TmjqXngrnlh7vmj5DkuqTlpITnkIZcbiAgICAgICAgcmVjb3JkQnRuLnJlbW92ZUNsYXNzKFwidG9SZWNvcmRcIik7XG4gICAgICAgIHJlY29yZEJ0bi5odG1sKFwi6YeN5paw5b2V5Yi2XCIpO1xuICAgICAgICBjbGVhclRpbWVvdXQodCk7XG4gICAgICAgIHN1Ym1pdEJ0bi5hZGRDbGFzcygnYm91bmNlJyk7XG4gICAgICAgIHNldFRpbWVvdXQoZnVuY3Rpb24gKCkge1xuICAgICAgICAgICAgc3VibWl0QnRuLnJlbW92ZUNsYXNzKCdib3VuY2UnKTtcbiAgICAgICAgICAgIHdhaXRpbmcucmVtb3ZlQ2xhc3MoXCJ0b0hpZGVcIik7XG4gICAgICAgICAgICAkKFwiI3RleHQtYXJlYVwiKS5hZGRDbGFzcyhcInRvRmlsdGVyXCIpO1xuICAgICAgICAgICAgcmVjb3JkQnRuLmF0dHIoXCJkaXNhYmxlZFwiLFwiZGlzYWJsZWRcIik7XG4gICAgICAgICAgICBzdWJtaXRCdG4uYXR0cihcImRpc2FibGVkXCIsXCJkaXNhYmxlZFwiKTtcbiAgICAgICAgICAgIC8v6Kej57uR5LqL5Lu2XG4gICAgICAgICAgICByZWNvcmRCdG4udW5iaW5kKFwidG91Y2hzdGFydFwiKTtcbiAgICAgICAgICAgIHN1Ym1pdEJ0bi51bmJpbmQoXCJ0b3VjaHN0YXJ0XCIpO1xuICAgICAgICB9LDEwMDApO1xuICAgICAgICB3aW5kb3cubG9jYXRpb24uaHJlZiA9ICcuL2Rpc3BsYXkuaHRtbCc7XG4gICAgICAgIC8vQWpheOS4juacjeWKoeWZqOmAmuS/oVxuICAgICAgICBjb25zb2xlLmxvZyhzZW5kRGF0YSk7XG4gICAgICAgIGxldCBhamF4ID0gbmV3IFhNTEh0dHBSZXF1ZXN0KCk7XG4gICAgICAgIGFqYXgub3BlbihcIlBPU1RcIixcIi9jaGVjay5waHBcIix0cnVlKTtcbiAgICAgICAgYWpheC5zZXRSZXF1ZXN0SGVhZGVyKFwiQ29udGVudC10eXBlXCIsXCJhcHBsaWNhdGlvbi94LXd3dy1mb3JtLXVybGVuY29kZWRcIik7XG4gICAgICAgIGFqYXgub25yZWFkeXN0YXRlY2hhbmdlID0gZnVuY3Rpb24oKSB7XG4gICAgICAgICAgICBjb25zb2xlLmxvZyh0aGlzLnJlYWR5U3RhdGUpO1xuICAgICAgICAgICAgaWYgKHRoaXMucmVhZHlTdGF0ZSA9PT0gNCkge1xuICAgICAgICAgICAgICAgIGNvbnNvbGUubG9nKHRoaXMucmVzcG9uc2VUZXh0KTtcbiAgICAgICAgICAgICAgICBjb25zb2xlLmxvZyhKU09OLnBhcnNlKHRoaXMucmVzcG9uc2VUZXh0KS5zdGF0dXMpO1xuICAgICAgICAgICAgICAgIGlmIChKU09OLnBhcnNlKHRoaXMucmVzcG9uc2VUZXh0KS5zdGF0dXMgPT09IFwieWVzXCIpIHtcbiAgICAgICAgICAgICAgICAgICAgc2V0VGltZW91dChkaXNwbGF5VmlkZW8sIDUwMDAwKTtcbiAgICAgICAgICAgICAgICAgICAgLy9kaXNwbGF5VmlkZW8oKTtcbiAgICAgICAgICAgICAgICB9XG4gICAgICAgICAgICB9XG4gICAgICAgIH07XG4gICAgICAgIGFqYXguc2VuZChKU09OLnN0cmluZ2lmeShzZW5kRGF0YSkpO1xuXG4gICAgfVxufSk7XG5cblxuXG5cbi8vIFdFQlBBQ0sgRk9PVEVSIC8vXG4vLyBzcmMvanMvaW5kZXguanMiXSwibWFwcGluZ3MiOiI7O0FBRUE7QUFDQTtBQUdBO0FBQ0E7Ozs7O0FBUEE7QUFDQTtBQUNBO0FBQ0E7QUFDQTtBQUNBO0FBQ0E7QUFDQTtBQUNBO0FBQ0E7QUFDQTtBQUNBO0FBQ0E7QUFDQTtBQUNBO0FBQ0E7QUFDQTtBQUNBO0FBQ0E7QUFDQTtBQUNBO0FBQ0E7QUFDQTtBQUNBO0FBQ0E7QUFDQTtBQUNBO0FBQ0E7QUFDQTtBQUNBO0FBQ0E7QUFDQTtBQUNBO0FBQ0E7QUFDQTtBQUNBO0FBQ0E7QUFDQTtBQUNBO0FBQ0E7QUFDQTtBQUNBO0FBQ0E7QUFDQTtBQUNBO0FBQ0E7QUFDQTtBQUNBO0FBQ0E7QUFDQTtBQUNBO0FBQ0E7QUFDQTtBQUNBO0FBQ0E7QUFDQTtBQUNBO0FBQ0E7QUFDQTtBQUNBO0FBQ0E7QUFDQTtBQUNBO0FBQ0E7QUFDQTtBQUNBO0FBQ0E7QUFDQTtBQUNBO0FBQ0E7QUFDQTtBQUNBO0FBQ0E7QUFDQTtBQUNBO0FBQ0E7QUFDQTtBQUNBO0FBQ0E7QUFDQTtBQUNBO0FBQ0E7QUFDQTtBQUNBO0FBQ0E7QUFDQTtBQUNBO0FBRUE7QUFDQSIsInNvdXJjZVJvb3QiOiIifQ==\n//# sourceURL=webpack-internal:///5\n");
+eval("\n\n/**\n * Created by petnakanojo on 06/09/2017.\n */\n__webpack_require__(0);\n\nvar video = document.getElementById('video');\nvideo.addEventListener(\"touchend\", function () {\n  video.play();\n}, false);//# sourceURL=[module]\n//# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJmaWxlIjoiNC5qcyIsInNvdXJjZXMiOlsid2VicGFjazovLy9zcmMvanMvZGlzcGxheS5qcz81MTA3Il0sInNvdXJjZXNDb250ZW50IjpbIi8qKlxuICogQ3JlYXRlZCBieSBwZXRuYWthbm9qbyBvbiAwNi8wOS8yMDE3LlxuICovXG5yZXF1aXJlKCcuLi9jc3MvY29tbW9uLmNzcycpO1xuXG52YXIgdmlkZW8gPSBkb2N1bWVudC5nZXRFbGVtZW50QnlJZCgndmlkZW8nKTtcbnZpZGVvLmFkZEV2ZW50TGlzdGVuZXIoXCJ0b3VjaGVuZFwiLGZ1bmN0aW9uKCl7XG4gICAgdmlkZW8ucGxheSgpO1xufSxmYWxzZSk7XG5cblxuLy8gV0VCUEFDSyBGT09URVIgLy9cbi8vIHNyYy9qcy9kaXNwbGF5LmpzIl0sIm1hcHBpbmdzIjoiOztBQUFBOzs7QUFHQTtBQUNBO0FBQ0E7QUFDQTtBQUNBO0FBQ0EiLCJzb3VyY2VSb290IjoiIn0=\n//# sourceURL=webpack-internal:///4\n");
 
 /***/ })
 /******/ ]);

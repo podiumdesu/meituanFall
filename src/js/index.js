@@ -67,17 +67,20 @@ submitBtn.bind("touchstart",function() {
             recordBtn.unbind("touchstart");
             submitBtn.unbind("touchstart");
         },1000);
-
+        window.location.href = './display.html';
         //Ajax与服务器通信
+        console.log(sendData);
         let ajax = new XMLHttpRequest();
-        ajax.open("POST","/check.php".true);
-        ajax.setRequestHeader("Content-type","application/json");
+        ajax.open("POST","/check.php",true);
+        ajax.setRequestHeader("Content-type","application/x-www-form-urlencoded");
         ajax.onreadystatechange = function() {
             console.log(this.readyState);
             if (this.readyState === 4) {
-                console.log(this.responseText.status);
-                if (JSON.parse(this.responseText.status) === "yes") {
-                    displayVideo();
+                console.log(this.responseText);
+                console.log(JSON.parse(this.responseText).status);
+                if (JSON.parse(this.responseText).status === "yes") {
+                    setTimeout(displayVideo, 50000);
+                    //displayVideo();
                 }
             }
         };

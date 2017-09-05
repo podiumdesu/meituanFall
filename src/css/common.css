@@ -19,6 +19,9 @@ button  {
     padding: .3rem;
 }
 
+video {
+    width: 90%;
+}
 #loading {position:absolute;left:calc(50% - 100px);top:calc(50% - 25px);z-index:9999}
 .uil-ripple {position:absolute;left:calc(50% - 90px);top:calc(50% - 90px);opacity:.5;z-index:999}
 
