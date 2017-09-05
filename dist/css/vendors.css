@@ -1,6 +1,6 @@
 h2 {
   text-align: center;
-  margin-top: 6rem;
+  margin-top: rem;
 }
 html {
   height: 100%;
@@ -98,6 +98,19 @@ p {
     background: #fff;
   }
 }
+h2,
+h3 {
+  text-align: center;
+  margin-top: 6rem;
+}
+html {
+  height: 100%;
+  background-color: #f0f8ff;
+}
+p {
+  margin-top: 2rem;
+  font-size: 0.8rem;
+}
 .toHide {
   display: none;
 }
@@ -120,6 +133,10 @@ button {
 }
 video {
   width: 90%;
+}
+#video-area {
+  text-align: center;
+  margin-top: 3rem;
 }
 #loading {
   position: absolute;

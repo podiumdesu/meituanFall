@@ -1,10 +1,9 @@
 require('../css/index.css');
 require('../css/common.css');
 import {data} from './data';
-console.log(data[1]);
 
 //console.log("hello")
-import displayVideo from './displayVideo';
+
 const recordBtn = $("#record-btn");
 const submitBtn = $("#submit-btn");
 const text = $("#time-record");
@@ -67,7 +66,8 @@ submitBtn.bind("touchstart",function() {
             recordBtn.unbind("touchstart");
             submitBtn.unbind("touchstart");
         },1000);
-        window.location.href = './display.html';
+
+        //window.location.href = './display.html';
         //Ajax与服务器通信
         console.log(sendData);
         let ajax = new XMLHttpRequest();
@@ -79,7 +79,9 @@ submitBtn.bind("touchstart",function() {
                 console.log(this.responseText);
                 console.log(JSON.parse(this.responseText).status);
                 if (JSON.parse(this.responseText).status === "yes") {
-                    setTimeout(displayVideo, 50000);
+                    setTimeout(function() {
+                        window.location.href = './display.html';
+                    }, 10000);
                     //displayVideo();
                 }
             }

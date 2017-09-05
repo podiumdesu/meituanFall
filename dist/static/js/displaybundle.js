@@ -60,7 +60,7 @@
 /******/ 	
 /******/ 	
 /******/ 	var hotApplyOnUpdate = true;
-/******/ 	var hotCurrentHash = "e049f1a8be093761b2f8"; // eslint-disable-line no-unused-vars
+/******/ 	var hotCurrentHash = "1b5f5b18946af9a2fb84"; // eslint-disable-line no-unused-vars
 /******/ 	var hotRequestTimeout = 10000;
 /******/ 	var hotCurrentModuleData = {};
 /******/ 	var hotCurrentChildModule; // eslint-disable-line no-unused-vars
@@ -720,7 +720,7 @@
 /******/ 	__webpack_require__.h = function() { return hotCurrentHash; };
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return hotCreateRequire(4)(__webpack_require__.s = 4);
+/******/ 	return hotCreateRequire(3)(__webpack_require__.s = 3);
 /******/ })
 /************************************************************************/
 /******/ ([
@@ -732,12 +732,11 @@ eval("// removed by extract-text-webpack-plugin//# sourceURL=[module]\n//# sourc
 /***/ }),
 /* 1 */,
 /* 2 */,
-/* 3 */,
-/* 4 */
+/* 3 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
-eval("\n\n/**\n * Created by petnakanojo on 06/09/2017.\n */\n__webpack_require__(0);\n\nvar video = document.getElementById('video');\nvideo.addEventListener(\"touchend\", function () {\n  video.play();\n}, false);//# sourceURL=[module]\n//# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJmaWxlIjoiNC5qcyIsInNvdXJjZXMiOlsid2VicGFjazovLy9zcmMvanMvZGlzcGxheS5qcz81MTA3Il0sInNvdXJjZXNDb250ZW50IjpbIi8qKlxuICogQ3JlYXRlZCBieSBwZXRuYWthbm9qbyBvbiAwNi8wOS8yMDE3LlxuICovXG5yZXF1aXJlKCcuLi9jc3MvY29tbW9uLmNzcycpO1xuXG52YXIgdmlkZW8gPSBkb2N1bWVudC5nZXRFbGVtZW50QnlJZCgndmlkZW8nKTtcbnZpZGVvLmFkZEV2ZW50TGlzdGVuZXIoXCJ0b3VjaGVuZFwiLGZ1bmN0aW9uKCl7XG4gICAgdmlkZW8ucGxheSgpO1xufSxmYWxzZSk7XG5cblxuLy8gV0VCUEFDSyBGT09URVIgLy9cbi8vIHNyYy9qcy9kaXNwbGF5LmpzIl0sIm1hcHBpbmdzIjoiOztBQUFBOzs7QUFHQTtBQUNBO0FBQ0E7QUFDQTtBQUNBO0FBQ0EiLCJzb3VyY2VSb290IjoiIn0=\n//# sourceURL=webpack-internal:///4\n");
+eval("\n\n/**\n * Created by petnakanojo on 06/09/2017.\n */\n__webpack_require__(0);\n\nvar video = document.getElementById('video');\nvideo.addEventListener(\"touchend\", function () {\n  video.play();\n}, false);//# sourceURL=[module]\n//# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJmaWxlIjoiMy5qcyIsInNvdXJjZXMiOlsid2VicGFjazovLy9zcmMvanMvZGlzcGxheS5qcz81MTA3Il0sInNvdXJjZXNDb250ZW50IjpbIi8qKlxuICogQ3JlYXRlZCBieSBwZXRuYWthbm9qbyBvbiAwNi8wOS8yMDE3LlxuICovXG5yZXF1aXJlKCcuLi9jc3MvY29tbW9uLmNzcycpO1xuXG52YXIgdmlkZW8gPSBkb2N1bWVudC5nZXRFbGVtZW50QnlJZCgndmlkZW8nKTtcbnZpZGVvLmFkZEV2ZW50TGlzdGVuZXIoXCJ0b3VjaGVuZFwiLGZ1bmN0aW9uKCl7XG4gICAgdmlkZW8ucGxheSgpO1xufSxmYWxzZSk7XG5cblxuLy8gV0VCUEFDSyBGT09URVIgLy9cbi8vIHNyYy9qcy9kaXNwbGF5LmpzIl0sIm1hcHBpbmdzIjoiOztBQUFBOzs7QUFHQTtBQUNBO0FBQ0E7QUFDQTtBQUNBO0FBQ0EiLCJzb3VyY2VSb290IjoiIn0=\n//# sourceURL=webpack-internal:///3\n");
 
 /***/ })
 /******/ ]);
