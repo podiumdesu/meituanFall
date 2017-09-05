@@ -1,16 +1,22 @@
-require('../css/index.css')
-require('../css/common.css')
-console.log("hello")
+require('../css/index.css');
+require('../css/common.css');
+import {data} from './data';
+console.log(data[1]);
 
-
+//console.log("hello")
+import displayVideo from './displayVideo';
 const recordBtn = $("#record-btn");
 const submitBtn = $("#submit-btn");
 const text = $("#time-record");
 const waiting = $("#waiting-area");
 const container = $("#container");
+const textRead = $("#text-read");
 
+let s = Math.random() * 10;
+textRead.html(data[parseInt(s)]);
 let t;
 let c = 0;
+const sendData = {id: 1};  //上传数字给服务器，判断是否需要加载视频
 function timedCount() {
     //console.log("Now it is starting");
     c = c + 1;
@@ -61,7 +67,22 @@ submitBtn.bind("touchstart",function() {
             recordBtn.unbind("touchstart");
             submitBtn.unbind("touchstart");
         },1000);
-    }
 
+        //Ajax与服务器通信
+        let ajax = new XMLHttpRequest();
+        ajax.open("POST","/check.php".true);
+        ajax.setRequestHeader("Content-type","application/json");
+        ajax.onreadystatechange = function() {
+            console.log(this.readyState);
+            if (this.readyState === 4) {
+                console.log(this.responseText.status);
+                if (JSON.parse(this.responseText.status) === "yes") {
+                    displayVideo();
+                }
+            }
+        };
+        ajax.send(JSON.stringify(sendData));
+
+    }
 });
 
