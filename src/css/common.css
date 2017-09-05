@@ -1,0 +1,16 @@
+.toHide {
+    display: none;
+}
+
+.toRecord {
+    background-color: lightblue;
+}
+button  {
+    border: 1px solid darkgrey;
+    border-radius: .3rem;
+    background-color: white;
+    width: 40%;
+    margin: 2%;
+    padding: .3rem;
+}
+
