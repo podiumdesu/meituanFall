@@ -70,3 +70,7 @@ p {
 #time-record {
     color: red;
 }
+
+#loading {
+    width: 200px;
+}

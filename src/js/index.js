@@ -40,6 +40,8 @@ submitBtn.bind("touchstart",function() {
     submitBtn.addClass('bounce');
     setTimeout(function () {
         submitBtn.removeClass('bounce');
+        $("#waiting-area").removeClass("toHide");
+        $("#container").addClass("toFilter");
     },1000);
 });
 
