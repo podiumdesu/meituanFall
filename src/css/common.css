@@ -4,7 +4,9 @@
 .toFilter {
     filter: blur(10px);
 }
-
+.toDisabled {
+    background-color: gainsboro;
+}
 .toRecord {
     background-color: lightblue;
 }

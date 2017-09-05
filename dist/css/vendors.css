@@ -104,6 +104,9 @@ p {
 .toFilter {
   filter: blur(10px);
 }
+.toDisabled {
+  background-color: #dcdcdc;
+}
 .toRecord {
   background-color: #add8e6;
 }
