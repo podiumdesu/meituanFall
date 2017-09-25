@@ -61,7 +61,7 @@ function test() {
             }
         };
                 allRegData.name = name_sel_value;
-                allRegData.sex = name_sel_value;
+                allRegData.sex = sex_sel_value;
                 allRegData.class = class_sel_value;
                 allRegData.phone = phone_sel_value;
                 allRegData.qq = qq_sel_value;
