@@ -46,31 +46,33 @@ function test() {
         submitBtn.unbind("touchstart");
         submitBtn.addClass("toBlur");
         $("#waiting-area").removeClass("toHide");
-        let ajax = new XMLHttpRequest();
-        ajax.open("POST","/api/signup/submit",true);
-        ajax.setRequestHeader("Content-type","application/json");
-        ajax.onreadystatechange= function() {
-            console.log(this.readyState);
-            if (this.readyState === 4) {   //Todo
-                console.log(this.responseText);
-                if (JSON.parse(this.responseText).status === "success") {
-                    alert("报名成功！！！请等待短信通知～");
-                } else {
-                alert("报名失败！！！！！！！！快重新报名！！！");
+        setTimeout(function() {
+            let ajax = new XMLHttpRequest();
+            ajax.open("POST","/api/signup/submit",true);
+            ajax.setRequestHeader("Content-type","application/json");
+            ajax.onreadystatechange= function() {
+                console.log(this.readyState);
+                if (this.readyState === 4) {   //Todo
+                    console.log(this.responseText);
+                    if (JSON.parse(this.responseText).status === "success") {
+                        alert("报名成功！！！请等待短信通知～可以看看我们的博客了解俱乐部目前的各种学习方向w");
+                        window.location.href("http://www.hustmeituan.club/");
+                    } else {
+                        alert("报名失败！！！！！！！！快重新报名！！！");
+                    }
                 }
-            }
-        };
-                allRegData.name = name_sel_value;
-                allRegData.sex = sex_sel_value;
-                allRegData.class = class_sel_value;
-                allRegData.phone = phone_sel_value;
-                allRegData.qq = qq_sel_value;
-                allRegData.intro = intro_sel_value;
-                allRegData.team = team_sel_value;
-                //这里要向服务器发送请求。
-                ajax.send(JSON.stringify(allRegData));
-                console.log(allRegData);
-
+            };
+            allRegData.name = name_sel_value;
+            allRegData.sex = sex_sel_value;
+            allRegData.class = class_sel_value;
+            allRegData.phone = phone_sel_value;
+            allRegData.qq = qq_sel_value;
+            allRegData.intro = intro_sel_value;
+            allRegData.team = team_sel_value;
+            //这里要向服务器发送请求。
+            ajax.send(JSON.stringify(allRegData));
+            //console.log(allRegData);
+        },1000)
 
     } else {
         alert("你还有信息没有填写完整哦～");
