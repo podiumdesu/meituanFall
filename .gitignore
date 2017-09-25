@@ -2,4 +2,3 @@ node_modules/
 .DS_Store
 .idea/
 webpack.config.js
-src/test.mp4
