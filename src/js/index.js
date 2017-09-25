@@ -17,7 +17,7 @@ let name_sel_value;
 let sex_sel_value;
 let class_sel_value, phone_sel_value, qq_sel_value, intro_sel_value;
 let team_sel_value;
-let allRegData;
+let allRegData = {};
 
 submitBtn.bind("touchstart", test);
 
@@ -46,21 +46,20 @@ function test() {
         submitBtn.unbind("touchstart");
         submitBtn.addClass("toBlur");
         $("#waiting-area").removeClass("toHide");
-
-        event = event || window.event;
-        if (event.keyCode === 13) {
-            if (searchInfo.length !== 0) {
-                ajax.open("POST","/api/signup/submit",true);
-                ajax.setRequestHeader("Content-type","application/json");
-                ajax.onreadystatechange= function() {
-                    console.log(this.readyState);
-                    if (this.readyState === 4) {   //Todo
-                        console.log(this.responseText);
-                        if (JSON.parse(this.responseText).status === "success") {
-                            alert("报名成功！！！请等待短信通知～");
-                        }
-                    }
-                };
+        let ajax = new XMLHttpRequest();
+        ajax.open("POST","/api/signup/submit",true);
+        ajax.setRequestHeader("Content-type","application/json");
+        ajax.onreadystatechange= function() {
+            console.log(this.readyState);
+            if (this.readyState === 4) {   //Todo
+                console.log(this.responseText);
+                if (JSON.parse(this.responseText).status === "success") {
+                    alert("报名成功！！！请等待短信通知～");
+                } else {
+                alert("报名失败！！！！！！！！快重新报名！！！");
+                }
+            }
+        };
                 allRegData.name = name_sel_value;
                 allRegData.sex = name_sel_value;
                 allRegData.class = class_sel_value;
@@ -70,9 +69,9 @@ function test() {
                 allRegData.team = team_sel_value;
                 //这里要向服务器发送请求。
                 ajax.send(JSON.stringify(allRegData));
-            }else {
-            }
-        }
+                console.log(allRegData);
+
+
     } else {
         alert("你还有信息没有填写完整哦～");
     }
