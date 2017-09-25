@@ -51,12 +51,12 @@ function test() {
             ajax.open("POST","/api/signup/submit",true);
             ajax.setRequestHeader("Content-type","application/json");
             ajax.onreadystatechange= function() {
-                console.log(this.readyState);
+                //console.log(this.readyState);
                 if (this.readyState === 4) {   //Todo
-                    console.log(this.responseText);
+                    //console.log(this.responseText);
                     if (JSON.parse(this.responseText).status === "success") {
                         alert("报名成功！！！请等待短信通知～可以看看我们的博客了解俱乐部目前的各种学习方向w");
-                        window.location.href("http://www.hustmeituan.club/");
+                        window.location.href = "http://www.hustmeituan.club/";
                     } else {
                         alert("报名失败！！！！！！！！快重新报名！！！");
                     }
@@ -94,10 +94,10 @@ function select(targetSel, className) {
         targetSel.addClass(className);
         if (targetSel.hasClass("sex-sel")) {
             sex_sel_value = targetSel.attr("data-id");
-            console.log(sex_sel_value);
+            //console.log(sex_sel_value);
         } else {
             team_sel_value = targetSel.text();
-            console.log(team_sel_value);
+            //console.log(team_sel_value);
         }
 
     }
