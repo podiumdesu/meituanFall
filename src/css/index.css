@@ -1,46 +1,56 @@
-h2 {
-    text-align: center;
-    margin-top: rem;
-
+body {
+    background-color: #403F48;
+    color: #E3D9CA;
 }
-
-html {
-    height: 100%;
-    background-color: aliceblue;
+.toHide {
+    display: none;
+    transition: left ease 1s;
 }
-p {
+.toBlur {
+    filter: blur(10px);
+}
+#submit-container button {
+    background-color: #95A792;
+    margin: 0;
     margin-top: 2rem;
-    font-size: 0.8rem;
-}
-#text-area {
-
-    margin: 3%;
-    margin-top: 6rem;
-
-}
-#text-read {
-
-    padding: .5rem .5rem;
-    margin: 0.3rem;
-    font-size: 0.6rem;
-    border-radius: .3rem;
-    box-shadow: 1px 1px 20px rgba(1,1,1,.2);
-    background-color: ghostwhite;
-
+    border: 0;
+    padding: 0.6rem 1rem;
+    color: #e3d9ca;
+    width: 40%;
 }
 
-#btn-area {
-    margin: 3%;
-    margin-top: 6rem;
 
-}
-
-#btn-area div {
-    padding-left: 10%;
-    padding-right: 10%;
+h2 {
+    font-size: 1.3rem;
     text-align: center;
 }
 
+#title-container {
+    text-align: center;
+    margin-top: 20px;
+}
+#title-club {
+    margin: 10px;
+    font-size: 1.3rem;
+    margin-right: 4px;
+
+}
+font {
+    font-size: 1.2rem;
+    vertical-align: bottom;
+}
+
+#title-club + span {
+    vertical-align: middle;
+}
+
+#intro-page {
+    font-size: .7rem;
+    margin-left: 1rem;
+    margin-top: 4px;
+    opacity: .6;
+    margin-bottom: -10px;
+}
 
 .bounce {
     -webkit-animation-name: bounce;
@@ -48,29 +58,125 @@ p {
     -webkit-animation-duration: .5s;
     animation-duration: .5s;
     -webkit-animation-fill-mode: both;
-    animation-fill-mode: both
+    animation-fill-mode: both;
     -webkit-transform-origin: center bottom;
     -ms-transform-origin: center bottom;
     transform-origin: center bottom
 }
 
 @keyframes bounce {
-    0%{background: #ffffff;}
-    50%{background: lightblue;}
-    100%{background: #ffffff;}
+    0%{background: #95A792;}
+    50%{background: #596C68;}
+    100%{background: #95A792;}
 }
 
-#power-info {
+ul {
+    list-style: none;
+    padding:0;
+}
+
+ul li {
+    margin-top: 0;
+    margin: .3rem 1rem;
+
+}
+
+input {
+    background-color: transparent;
+    border: 0;
+    border-bottom: dashed .1rem  #596c68 ;
+    color: #e3d9ca;
+    width: 100%;
+    margin-top: 10px;
+    padding: 5px 0;
+    display: block;
+}
+
+input:focus {
+    border: 0;
+    outline: 0;
+    border-bottom: dashed .1rem  #596c68 ;
+}
+
+select {
+    color: #e3d9ca;
+}
+
+.select-area {
+    margin-top: .6rem;
+    margin-bottom: .6rem;
+}
+
+select:focus {
+    border:0;
+    outline:0;
+    color: #e3d9ca;
+    background-color: transparent;
+}
+
+
+#submit-container {
     text-align: center;
-    position: fixed;
-    bottom: 0.2rem;
-    width: 96%;
 }
 
-#time-record {
-    color: red;
+
+
+
+/*touch select */
+#reg-sex {
+    text-align: center;
+
 }
 
-#loading {
-    width: 200px;
+#reg-team {
+    text-align: center;
+}
+.touch-sel {
+    display: inline-block;
+    border: 1px dashed #596c68;
+    text-align: center;
+    margin: 0;
+    margin-top: 10px;
+
+}
+
+.sex-sel {
+    width: 45%;
+    padding: .2rem 0;
+    font-size: .7rem;
+}
+.team-sel {
+    width: 22%;
+    padding: .2rem 0;
+    font-size: .7rem;
+}
+.selected {
+    background-color: #596c68;
+    transition: all ease 1s;
+}
+
+#reg-intro {
+    overflow: scroll;
+}
+
+
+
+
+
+/*waiting area*/
+#loading {position:absolute;left:calc(50% - 100px);top:calc(40% - 25px);z-index:9999}
+.uil-ripple {position:absolute;left:calc(50% - 90px);top:calc(40% - 90px);opacity:.5;z-index:999}
+
+.ld-l {opacity:0;animation: ld-in 3s 0.0s ease infinite;}
+.ld-o {opacity:0;animation: ld-in 3s 0.1s ease infinite;}
+.ld-a {opacity:0;animation: ld-in 3s 0.2s ease infinite;}
+.ld-d {opacity:0;animation: ld-in 3s 0.3s ease infinite;}
+.ld-i {opacity:0;animation: ld-in 3s 0.4s ease infinite;}
+.ld-n {opacity:0;animation: ld-in 3s 0.5s ease infinite;}
+.ld-g {opacity:0;animation: ld-in 3s 0.6s ease infinite;}
+
+@keyframes ld-in {
+    0% {opacity:0;transform:scale(0);}
+    30% {opacity:1;transform:scale(1);}
+    100% {opacity:1;transform:scale(1);}
 }
